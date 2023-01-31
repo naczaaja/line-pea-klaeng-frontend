@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans Thai', sans-serif;
+}
+
+//customise the typography
+@import '~@angular/material/theming';
+$custom-typography: mat-typography-config($font-family: 'Noto Sans Thai'
+  );
+@include angular-material-typography($custom-typography);
