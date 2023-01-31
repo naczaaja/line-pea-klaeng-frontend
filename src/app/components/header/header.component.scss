@@ -1,0 +1,15 @@
+.flex-spacer {
+  flex-grow: 1;
+}
+
+.config-header {
+  background: #FFFFFF;
+  box-shadow: 0px 4px 16px rgba(192, 181, 205, 0.24);
+  z-index: 1;
+  height: 70px;
+}
+
+div {
+  width: fit-content;
+  margin: 0;
+}
