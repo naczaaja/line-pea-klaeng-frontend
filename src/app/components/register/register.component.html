@@ -1,43 +1,41 @@
 <div class="d-flex flex-column align-items-center">
   <span class="fw-bolder fs-4 gap-content">ลงทะเบียน</span>
-  <img src="https://qph.cf2.quoracdn.net/main-qimg-6d4006544105f6b3f94a212a644afac4-lq"
-    class="avatar rounded-circle bg-white gap-content" alt="">
 
-  <form class="d-flex flex-column gap-content">
-    <mat-form-field>
+  <img class="avatar rounded-circle bg-white gap-content" [src]="imageAvatar">
+
+  <form #userdataForm="ngForm" (submit)="onSubmit(userdataForm)" class="d-flex flex-column align-items-center">
+    <mat-form-field class="gap-content" appearance="outline">
       <mat-label>รหัสบัตรประชาชน 13 หลัก</mat-label>
-      <input type="number" [formControl]="idCardFormControl" [errorStateMatcher]="matcher" matInput>
+      <input type="number" matInput ngModel name="idCardNumber" required>
     </mat-form-field>
-    <!-- <mat-error *ngIf="idCardFormControl.hasError('required')">
-      ID number is <strong>required</strong>
-    </mat-error> -->
 
     <mat-form-field appearance="fill">
       <mat-label>คำนำหน้าชื่อ</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let food of foods" [value]="food.value">
-          {{food.viewValue}}
+      <mat-select ngModel name="selectedPrefix" required>
+        <mat-option *ngFor="let prefix of prefixes" [value]="prefix.value">
+          {{prefix.viewValue}}
         </mat-option>
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field class="example-full-width">
+    <mat-form-field appearance="outline">
       <mat-label>ชื่อ</mat-label>
-      <input matInput>
+      <input matInput ngModel name="firstname" required>
     </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <mat-label>นามสกุล</mat-label>
-      <input matInput>
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <mat-label>เบอร์โทรศัพท์</mat-label>
-      <input matInput type="tel">
-    </mat-form-field>
-  </form>
 
-  <button mat-raised-button color="primary" class="gap-content w-50">
-    <mat-icon class="me-1">login</mat-icon>
-    ลงทะเบียน
-  </button>
+    <mat-form-field appearance="outline">
+      <mat-label>นามสกุล</mat-label>
+      <input matInput ngModel name="lastname" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>เบอร์โทรศัพท์</mat-label>
+      <input matInput type="tel" ngModel name="telNumber" required>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" class="gap-content w-100" type="submit">
+      ลงทะเบียน
+    </button>
+  </form>
 
 </div>
