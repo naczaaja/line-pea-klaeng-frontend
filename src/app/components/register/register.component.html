@@ -5,32 +5,8 @@
 
   <form #userdataForm="ngForm" (submit)="onSubmit(userdataForm)" class="d-flex flex-column align-items-center">
     <mat-form-field class="gap-content" appearance="outline">
-      <mat-label>รหัสบัตรประชาชน 13 หลัก</mat-label>
-      <input type="number" matInput ngModel name="idCardNumber" required>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-      <mat-label>คำนำหน้าชื่อ</mat-label>
-      <mat-select ngModel name="selectedPrefix" required>
-        <mat-option *ngFor="let prefix of prefixes" [value]="prefix.value">
-          {{prefix.viewValue}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>ชื่อ</mat-label>
-      <input matInput ngModel name="firstname" required>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>นามสกุล</mat-label>
-      <input matInput ngModel name="lastname" required>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>เบอร์โทรศัพท์</mat-label>
-      <input matInput type="tel" ngModel name="telNumber" required>
+      <mat-label>หมายเลขบัตรประจำตัวประชาชน</mat-label>
+      <input type="number" matInput ngModel name="idCard" required>
     </mat-form-field>
 
     <button mat-raised-button color="primary" class="gap-content w-100" type="submit">

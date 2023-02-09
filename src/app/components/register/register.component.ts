@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserData } from 'src/app/models/user-data';
+import { NetworkService } from 'src/app/services/network.service';
 
 
 @Component({
@@ -10,18 +12,14 @@ import { UserData } from 'src/app/models/user-data';
 })
 export class RegisterComponent implements OnInit {
 
+  lineId = "xxxxx"
   imageAvatar = 'https://pbs.twimg.com/media/DWYCS_6X0AY3ZqL.jpg'
-  
-  constructor() { }
+
+  constructor(private networkService: NetworkService, private router: Router) { }
 
   ngOnInit(): void {
-  }
 
-  prefixes: PrefixName[] = [
-    { value: 'นาย', viewValue: 'นาย' },
-    { value: 'นาง', viewValue: 'นาง' },
-    { value: 'นางสาว', viewValue: 'นางสาว' },
-  ];
+  }
 
   onSubmit(userdataForm: NgForm) {
 
@@ -31,20 +29,21 @@ export class RegisterComponent implements OnInit {
 
     const values = userdataForm.value
     let userData: UserData = {
+      lineId: this.lineId,
       imageAvatar: this.imageAvatar,
-      idCardNumber: values.idCardNumber,
-      selectedPrefix: values.selectedPrefix,
-      firstname: values.firstname,
-      lastname: values.lastname,
-      telNumber: values.telNumber
+      idCard: values.idCard
     }
     // alert(JSON.stringify(userData))
-    console.log(userData)
+
+    this.networkService.addUserDataRegister(userData).subscribe({
+      next: data => {
+        console.log('welcome to PEA-KLAENG member')
+        this.router.navigate(['/welcome'])
+      },
+      error: (error) => {
+        console.log(error.error.message)
+      }
+    })
   }
 
-}
-
-interface PrefixName {
-  value: string;
-  viewValue: string;
 }
