@@ -4,19 +4,17 @@
 FROM node:19-alpine3.16 as build
 
 # Set the working directory
+# RUN mkdir /app/lineoa-klaeng/frontend
 WORKDIR /app/lineoa-klaeng/frontend
 
 # Add the source code to app
-COPY ./ /app/lineoa-klaeng/frontend
+COPY ./ ./
 
 # Install all the dependencies
 RUN npm install
 
 # Generate the build of the application
 RUN npm run build
-
-
-
 
 # Stage 2: Serve app with nginx server
 
@@ -32,23 +30,3 @@ COPY --from=build /app/lineoa-klaeng/frontend/dist/frontend /usr/share/nginx/htm
 EXPOSE 80
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
-
-
-# FROM nginx:1.23.3-alpine
-
-# RUN apk update && apk upgrade && apk add --update nodejs npm
-
-# RUN npm install -g @angular/cli@13
-
-# WORKDIR /app
-# COPY package.json  /app
-
-# COPY . /app
-
-# RUN npm install && ng build --output-path=/usr/share/nginx/html
-
-# COPY nginx.conf /etc/nginx/nginx.conf
-
-# EXPOSE 80
-
-# ENTRYPOINT ["nginx", "-g", "daemon off;"]
