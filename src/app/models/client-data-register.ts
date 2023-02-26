@@ -1,10 +1,10 @@
-export interface UserData {
+export interface ClientDataRegister {
   lineId: string,
   imageAvatar: string,
   idCard: number
 }
 
-export interface UserDataResponse {
+export interface ClientDataRegisterResponse {
   id: number,
   createdAt: Date,
   updatedAt: Date,

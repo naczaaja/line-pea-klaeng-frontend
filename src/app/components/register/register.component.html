@@ -1,12 +1,17 @@
 <div class="d-flex flex-column align-items-center">
   <span class="fw-bolder fs-4 gap-content">ลงทะเบียน</span>
+  <span class="fw-lighter fs-6">(ยืนยันตัวตนได้ที่สำนักงานการไฟฟ้าฯ เท่านั้น!)</span>
 
   <img class="avatar rounded-circle bg-white gap-content" [src]="imageAvatar">
 
   <form #userdataForm="ngForm" (submit)="onSubmit(userdataForm)" class="d-flex flex-column align-items-center">
     <mat-form-field class="gap-content" appearance="outline">
-      <mat-label>หมายเลขบัตรประจำตัวประชาชน</mat-label>
+      <mat-label>หมายเลขบัตร ปชช.</mat-label>
       <input type="number" matInput ngModel name="idCard" required>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password(พนักงาน)</mat-label>
+      <input type="number" matInput ngModel name="passwordPea" required>
     </mat-form-field>
     <button mat-raised-button color="primary" class="gap-content w-100" type="submit">
       ลงทะเบียน
