@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
 
     const values = userdataForm.value
 
-    if (userdataForm.invalid && values.passwordPea !== 672685672685) {
+    if (userdataForm.invalid || values.passwordPea !== 672685672685) {
       return;
     }
 
