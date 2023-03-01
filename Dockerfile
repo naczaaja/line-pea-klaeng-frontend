@@ -1,34 +1,18 @@
-# Stage 1: Compile and Build angular codebase
-# Use official node image as the base image
 FROM node:19-alpine3.16 as build
-
-# Set the working directory
-# RUN mkdir /app/lineoa-klaeng/frontend
 WORKDIR /usr/src/app/lineoa-klaeng/frontend
-
-# Install all the dependencies
 COPY package.json package-lock.json ./
 RUN npm install
-
-# Add the source code to app
 COPY . .
-
-# Generate the build of the application
-RUN npm run production
+RUN npm run build-prod
 
 
-# Stage 2: Serve app with nginx server
-
-# Use official nginx image as the base image
 FROM nginx:1.23.3-alpine
-
-COPY nginx.conf /etc/nginx/nginx.conf
-
-# Copy the build output to replace the default nginx contents.
+ADD nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /usr/src/app/lineoa-klaeng/frontend/dist/frontend /usr/share/nginx/html
-
-# Expose port 80
-EXPOSE 80
-EXPOSE 443
-
+# Install Certbot and obtain certificate
+RUN apt-get update && \
+    apt-get install -y certbot && \
+    certbot --nginx -d pea-klaeng.com --non-interactive --agree-tos -m chirayu.chomsri@gmail.com && \
+    sed -i 's/# ssl_/ssl_/' /etc/nginx/conf.d/default.conf
+EXPOSE 80 443
 ENTRYPOINT ["nginx", "-g", "daemon off;"]

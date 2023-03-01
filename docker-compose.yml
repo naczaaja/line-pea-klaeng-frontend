@@ -6,7 +6,7 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    restart: always
+    restart: on-failure
     networks:
       - lineoa-klaeng-network
     volumes:
