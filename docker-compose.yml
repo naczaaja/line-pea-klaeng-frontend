@@ -5,22 +5,12 @@ services:
     container_name: frontend
     ports:
       - "80:80"
-      - "443:443"
     restart: on-failure
     networks:
       - lineoa-klaeng-network
     volumes:
       - /app/node_modules
       - .:/app
-      - ./nginx/conf/:/etc/nginx/conf.d/:ro
-      - ./certbot/www:/var/www/certbot/:ro
-      - ./certbot/conf/:/etc/nginx/ssl/:ro
-
-  certbot:
-    image: certbot/certbot:latest
-    volumes:
-      - ./certbot/www/:/var/www/certbot/:rw
-      - ./certbot/conf/:/etc/letsencrypt/:rw
 
 networks:
   lineoa-klaeng-network:
