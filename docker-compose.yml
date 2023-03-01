@@ -11,6 +11,7 @@ services:
     volumes:
       - /app/node_modules
       - .:/app
+      - ./html:/var/www/html
 
 networks:
   lineoa-klaeng-network:
