@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Generate the build of the application
-RUN npm run build --omit=dev
+RUN npm run production
 
 
 # Stage 2: Serve app with nginx server
@@ -29,5 +29,6 @@ COPY --from=build /usr/src/app/lineoa-klaeng/frontend/dist/frontend /usr/share/n
 
 # Expose port 80
 EXPOSE 80
+EXPOSE 443
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
