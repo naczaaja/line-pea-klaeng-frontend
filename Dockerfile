@@ -1,5 +1,4 @@
 # Stage 1: Compile and Build angular codebase
-
 # Use official node image as the base image
 FROM node:19-alpine3.16 as build
 
