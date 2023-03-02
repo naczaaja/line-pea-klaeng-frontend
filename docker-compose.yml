@@ -9,8 +9,7 @@ services:
     networks:
       - lineoa-klaeng-network
     volumes:
-      - /app/node_modules
-      - .:/app
+      - .:/usr/src/app/lineoa-klaeng/frontend
 
 networks:
   lineoa-klaeng-network:
