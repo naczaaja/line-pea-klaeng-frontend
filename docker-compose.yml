@@ -1,6 +1,7 @@
 version: '3.9'
 services:
   frontend:
+    privileged: true
     build: .
     container_name: frontend
     ports:
