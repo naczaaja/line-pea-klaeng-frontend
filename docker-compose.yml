@@ -10,8 +10,21 @@ services:
       - lineoa-klaeng-network
     volumes:
       - .:/usr/src/app/lineoa-klaeng/frontend
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+
+  certbot:
+    image: certbot/certbot
+    command: certonly --webroot --webroot-path=/var/www/html --email chirayu.chomsri@gmail.com --agree-tos --no-eff-email -d c2.pea-klaeng.com
+    volumes:
+      - ./certbot:/etc/letsencrypt
+      - ./data:/var/www/html
+    depends_on:
+      - frontend
+    networks:
+      - lineoa-klaeng-network
 
 networks:
   lineoa-klaeng-network:
+    external: true
 
 
