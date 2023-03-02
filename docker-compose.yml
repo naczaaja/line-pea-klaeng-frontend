@@ -25,6 +25,4 @@ services:
 
 networks:
   lineoa-klaeng-network:
-    external: true
-
 
