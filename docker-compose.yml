@@ -9,8 +9,10 @@ services:
     networks:
       - lineoa-klaeng-network
     volumes:
-      - /app/node_modules
-      - .:/app
+      # - /app/node_modules
+      # - .:/app
+      - ./dist/frontend/:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/nginx.conf
 
 networks:
   lineoa-klaeng-network:
