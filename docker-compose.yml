@@ -18,8 +18,6 @@ services:
     image: certbot/certbot
     volumes:
       - ./certs:/etc/letsencrypt
-    command: docker compose run certbot certonly --webroot --webroot-path=/var/www/html --email chirayu.chomsri@gmail.com --agree-tos --no-eff-email -d c2.pea-klaeng.com -d www.c2.pea-klaeng.com
-
 
 networks:
   lineoa-klaeng-network:
