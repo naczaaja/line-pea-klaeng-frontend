@@ -12,25 +12,12 @@ services:
     volumes:
       - /app/node_modules
       - .:/app
-      - web-root:/var/www/html
-      - certbot-etc:/etc/letsencrypt
-      - certbot-var:/var/lib/letsencrypt
+      - ./certs:/etc/nginx/certs
 
   certbot:
     image: certbot/certbot
-    container_name: certbot
     volumes:
-      - certbot-etc:/etc/letsencrypt
-      - certbot-var:/var/lib/letsencrypt
-      - web-root:/var/www/html
-    depends_on:
-      - frontend
-    command: certonly --webroot --webroot-path=/var/www/html --email chirayu.chomsri@gmail.com --agree-tos --no-eff-email --staging -d c2.pea-klaeng.com  -d www.c2.pea-klaeng.com
-
-volumes:
-  web-root:
-  certbot-etc:
-  certbot-var:
+      - ./certs:/etc/letsencrypt
 
 networks:
   lineoa-klaeng-network:
