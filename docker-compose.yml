@@ -10,6 +10,7 @@ services:
     networks:
       - lineoa-klaeng-network
     volumes:
+      - .:/root/line-pea-klaeng-frontend
       - ./dist/frontend:/root/line-pea-klaeng-frontend/dist/frontend
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - ./dhparam:/etc/nginx/dhparam
