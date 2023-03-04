@@ -19,7 +19,7 @@ services:
 
   certbot:
     image: certbot/certbot:latest
-    command: certonly --webroot --webroot-path=/usr/share/nginx/html/letsencrypt --email chirayu.chomsri@gmail.com --agree-tos --no-eff-email -d c2.pea-klaeng.com
+    command: certonly --webroot --webroot-path=/usr/share/nginx/html/letsencrypt --email chirayu.chomsri@gmail.com --agree-tos --no-eff-email -d pea-klaeng.com
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/logs:/var/log/letencrypt
