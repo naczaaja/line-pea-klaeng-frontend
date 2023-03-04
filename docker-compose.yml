@@ -12,7 +12,7 @@ services:
     volumes:
       - .:/src/app/frontend
       - ./dist/frontend:/src/app/frontend/dist/frontend
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx.conf:/etc/nginx/nginx.conf
       - ./dhparam:/etc/nginx/dhparam
       - ./certbot/conf:/etc/nginx/ssl
       - ./certbot/data:/usr/share/nginx/html/letsencrypt
