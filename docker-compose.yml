@@ -5,7 +5,6 @@ services:
     container_name: frontend
     ports:
       - "80:80"
-      - "443:443"
     restart: always
     networks:
       - lineoa-klaeng-network
@@ -13,21 +12,6 @@ services:
       - .:/src/app/frontend
       - ./dist/frontend:/src/app/frontend/dist/frontend
       - ./nginx.conf:/etc/nginx/nginx.conf
-      - ./dhparam:/etc/nginx/dhparam
-      - ./certbot/conf:/etc/nginx/ssl
-      - ./certbot/data:/usr/share/nginx/html/letsencrypt
-
-  certbot:
-    image: certbot/certbot:latest
-    command: certonly --webroot --webroot-path=/usr/share/nginx/html/letsencrypt --email chirayu.chomsri@gmail.com --agree-tos --no-eff-email -d c2.pea-klaeng.com -d www.c2.pea-klaeng.com
-    volumes:
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/logs:/var/log/letencrypt
-      - ./certbot/data:/usr/share/nginx/html/letsencrypt
-    depends_on:
-      - frontend
-    networks:
-      - lineoa-klaeng-network
 
 networks:
   lineoa-klaeng-network:
